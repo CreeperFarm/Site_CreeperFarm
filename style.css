@@ -41,3 +41,13 @@
       padding: 14px;
     }
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #1d2bec;
+  color: white;
+  text-align: center;
+}
