@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>CreeperFarm - Boutique</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" type="image/x-icon" href="../../image/logo/logo_small.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    </head>
+    <body>
+        <div class="navbar">
+            <a id="logoicon" href="../index.html"><img src="../../image/logo/logo_small.png" alt="Logo de CreeperFarm" width="100"></a>
+            <a href="../../index.html"><em class="fa fa-home"></em>  Accueil</a>
+            <a href="../news/index.html"><em class="fa fa-newspaper-o"></em>  Actualité</a>
+            <a href="../contact/index.html"><em class="fa fa-envelope"></em>  Contact</a>
+            <a class="active" href="../about/index.html"><em class="fa fa-info-circle"></em>  À propos</a>
+        </div>
+        <br><br><br>
+		<div id="smart-button-container">
+			<div style="text-align: center;">
+			  <div id="paypal-button-container"></div>
+			</div>
+		  </div>
+		<script src="https://www.paypal.com/sdk/js?client-id=AQKXqKUeNZuhUsC6IaJFnfY1QnZBgwpRZfZQeRBn2CFPd3pO7VVC3M6DXeEUQtRPMqUxFWXMXAp5Cf6d&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script>
+		<script>
+		  function initPayPalButton() {
+			paypal.Buttons({
+			  style: {
+				shape: 'rect',
+				color: 'blue',
+				layout: 'vertical',
+				label: 'paypal',
+				
+			  },
+	  
+			  createOrder: function(data, actions) {
+				return actions.order.create({
+				  purchase_units: [{"description":"yfhjgfyujhg","amount":{"currency_code":"EUR","value":1}}]
+				});
+			  },
+	  
+			  onApprove: function(data, actions) {
+				return actions.order.capture().then(function(orderData) {
+				  
+				  // Full available details
+				  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+	  
+				  // Show a success message within this page, e.g.
+				  const element = document.getElementById('paypal-button-container');
+				  element.innerHTML = '';
+				  element.innerHTML = '<h3>Thank you for your payment!</h3>';
+	  
+				  // Or go to another URL:  actions.redirect('thank_you.html');
+				  
+				});
+			  },
+	  
+			  onError: function(err) {
+				console.log(err);
+			  }
+			}).render('#paypal-button-container');
+		  }
+		  initPayPalButton();
+		</script>
+    </body>
+</html>
